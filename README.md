@@ -80,7 +80,9 @@ public void setFullScreen(AppCompatActivity activity){}
 ---
 
 ##导入方法
+
 Add it in your root build.gradle at the end of repositories:
+
 ~~~java
 allprojects {
 		repositories {
@@ -95,7 +97,7 @@ allprojects {
 ~~~java
 dependencies {
   		...
-		compile 'com.github.ljh998:BAStatusBar:1.0.1'
+		compile 'com.github.ljh998:BAStatusBarLib:1.0.1'
 	}
 ~~~
 
