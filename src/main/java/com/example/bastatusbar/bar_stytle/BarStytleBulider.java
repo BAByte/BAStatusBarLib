@@ -12,10 +12,8 @@ public class BarStytleBulider {
     private int colorResId;
     private boolean isTrans=false;
     private boolean isImageAsBg=false;
-    private static AppCompatActivity activity;
 
-    public static BarStytleBulider getStytleBuilder(AppCompatActivity appCompatActivity){
-        activity=appCompatActivity;
+    public static BarStytleBulider getStytleBuilder(){
         return new BarStytleBulider();
     }
     public  BarStytleBulider setColorResId(int colorResId){
@@ -33,7 +31,7 @@ public class BarStytleBulider {
         return this;
     }
 
-    public StatusBarRequest build(){
-        return new StatusBarRequest(activity,isImageAsBg,isTrans,colorResId);
+    public StatusBarRequest build(AppCompatActivity appCompatActivity){
+        return new StatusBarRequest(appCompatActivity,isImageAsBg,isTrans,colorResId);
     }
 }

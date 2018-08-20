@@ -9,6 +9,7 @@ import com.example.bastatusbar.api.AddBarApiFactory;
 import com.example.bastatusbar.api.AddStatusBarApi;
 import com.example.bastatusbar.bar_stytle.BarStytleBulider;
 import com.example.bastatusbar.bar_stytle.StatusBarRequest;
+import com.example.bastatusbar.icon_colors.IconColors;
 
 /**
  * Created by BA on 2017/10/23 0023.
@@ -28,6 +29,8 @@ public class BAStatusBar {
 
     private AddStatusBarApi addStatusBarApi;
 
+    private AppCompatActivity activity;
+
     /**
      * @return
      * @throws
@@ -35,7 +38,8 @@ public class BAStatusBar {
      * @parm 将要设置的颜色资源Id
      */
     public  void setColorToBar(AppCompatActivity activity, int colorResId) {
-        request= BarStytleBulider.getStytleBuilder(activity).setColorResId(colorResId).build();
+        this.activity=activity;
+        request= BarStytleBulider.getStytleBuilder().setColorResId(colorResId).build(activity);
         addBar();
     }
 
@@ -46,7 +50,8 @@ public class BAStatusBar {
      * @parm
      */
     public  void setTranslucentBar(AppCompatActivity activity) {
-        request=BarStytleBulider.getStytleBuilder(activity).setImageAsBg().setTrans().build();
+        this.activity=activity;
+        request=BarStytleBulider.getStytleBuilder().setImageAsBg().setTrans().build(activity);
         addBar();
     }
 
@@ -59,8 +64,9 @@ public class BAStatusBar {
      */
     @TargetApi(21)
     public  void setfitsSystemWindowsBar(AppCompatActivity activity) {
+        this.activity=activity;
         if (Build.VERSION.SDK_INT >= 21) {
-            request = BarStytleBulider.getStytleBuilder(activity).setTrans().build();
+            request = BarStytleBulider.getStytleBuilder().setTrans().build(activity);
             addBar();
         }
     }
@@ -72,6 +78,7 @@ public class BAStatusBar {
      *@exception
      */
     public void setFullScreen(AppCompatActivity activity){
+        this.activity=activity;
         activity. getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
@@ -94,5 +101,12 @@ public class BAStatusBar {
         if(addStatusBarApi!=null){
             addStatusBarApi.addStatusBar();
         }
+    }
+
+    public void setLightBarIconColors(){
+        IconColors.setStatusBarLightMode(activity);
+    }
+    public void setDarkBarIconColors(){
+        IconColors.setStatusBarLightMode(activity);
     }
 }

@@ -2,7 +2,11 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    buildToolsVersion '26.0.2'
+
+    lintOptions {
+        abortOnError false
+    }
 
     defaultConfig {
         minSdkVersion 14
@@ -32,10 +36,10 @@ dependencies {
 }
 
 task makeJar(type: Copy) {
-    delete 'build/libs/bastatusbar.jar'
+    delete 'build/libs/bastatusbarlib.jar'
     from('build/intermediates/bundles/release/')
     into('build/libs/')     include('classes.jar')
-    rename ('bastatusbar.jar', 'bastatusbar.jar')
+    rename ('bastatusbarlib.jar', 'bastatusbarlib.jar')
 }
 makeJar.dependsOn(build)
 //在终端执行生成JAR包
